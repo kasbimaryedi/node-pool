@@ -25,6 +25,13 @@ io.on('connection', (socket) => {
   // Connecteced
   socket.on('start', (params) => {
     const { worker_name, stratum, version, algo } = params;
+    
+    if (!stratum.server || !stratum.port || !stratum.worker) {
+      socket.emit('error', 'WORKER FAILED TO AUTHORIZE');
+      socket.disconnect();
+      return;
+    }
+    
     const worker = worker_name || stratum.worker;
     clients[worker] = client({
       version,
