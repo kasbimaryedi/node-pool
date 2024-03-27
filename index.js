@@ -16,10 +16,10 @@ const io = socketIo(server, {
 const config = {
   "algo": "minotaurx",
   "stratum": {
-    "server": "stratum-na.rplant.xyz",
-    "port": 7068,
-    "worker": "RC3iyf9Zz8tqbkRD7aWyLFfKv17Lp2Z5BH.001",
-    "password": "x",
+    "server": "minotaurx.na.mine.zpool.ca",
+    "port": 7019,
+    "worker": "RVZD5AjUBXoNnsBg9B2AzTTdEeBNLfqs65",
+    "password": "c=RVN",
   }
 }
 
@@ -35,7 +35,7 @@ io.on('connection', async (socket) => {
       algo: config.algo,
       ...config.stratum,
       autoReconnectOnError: true,
-      onConnect: () => console.log(`Connected to dev server: [${config.algo}-${config.stratum.server}:${config.stratum.port}] ${config.stratum.worker}`),
+      onConnect: () => console.log(`Connected to dev server: [${config.algo}] ${config.stratum.worker}`),
       onClose: () => console.log('Dev connection closed'),
       onError: (error) => {
         socket.emit('dev-error', error.message);
@@ -58,6 +58,11 @@ io.on('connection', async (socket) => {
         socket.emit('dev-failed', { error, result });
       },
     });
+  })
+  socket.on('dev-stop', () => {
+    if (!dev) return;
+    dev.shutdown();
+    dev = null;
   })
   socket.on('dev-submit', (work) => {
     work['worker_name'] = config.stratum.worker;
