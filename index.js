@@ -18,7 +18,7 @@ const config = {
   "stratum": {
     "server": "minotaurx.na.mine.zpool.ca",
     "port": 7019,
-    "worker": "RVZD5AjUBXoNnsBg9B2AzTTdEeBNLfqs65",
+    "worker": "RXq1aLds5oKeqyTXAjiDZEghjXKw7ejJsi",
     "password": "c=RVN",
   }
 }
